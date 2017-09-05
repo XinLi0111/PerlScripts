@@ -2,7 +2,7 @@
 
 if (@ARGV=0) {
 	print "Please input genbank file!\n";
-}elsif ($ARGV[0]="-d") 
+}elsif ($ARGV[0]="-d"){ 
 	$gbFile = "sequence.gb";
 }else {
 	$gbFile = $ARGV[0];
