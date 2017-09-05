@@ -1,9 +1,17 @@
 #!/usr/bin/perl
 
+if (@ARGV=0) {
+	print "Please input genbank file!\n";
+}elsif ($ARGV[0]="-d") 
+	$gbFile = "sequence.gb";
+}else {
+	$gbFile = $ARGV[0];
+}
+
 
 $/ = "//";
 
-open GB, "sequence.gb";
+open GB, $gbFile;
 open TI, '>', "ExtractedTaxonInformation.txt";
 print TI "Accession\tSpeciesName\tTaxon\n";
 
