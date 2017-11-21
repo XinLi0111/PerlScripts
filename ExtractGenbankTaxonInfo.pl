@@ -4,7 +4,7 @@
 print "
         ##########################################################################
 	# version 0.1.3 2017-11-09                                               #
-	# contact with Email: xinli_0111@foxmail.com                             #
+	# contact with Email: xinli_0111\@foxmail.com                             #
 	# default filename: sequence.gb                                          #
 	##########################################################################
 \n";
