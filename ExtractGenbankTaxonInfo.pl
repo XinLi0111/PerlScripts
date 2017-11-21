@@ -1,14 +1,34 @@
 #!/usr/bin/perl
 
-if (@ARGV==undef) {
-	print "Please input genbank file!\n";
-}elsif ($ARGV[0]=="-d") {
-	$gbFile = "sequence.gb";
-	print "Processing, please wait...\n";
-}else {
-	$gbFile = $ARGV[0];
-	print "Processing, please wait...\n";
-}
+
+print "
+  ##########################################################################
+	# version 0.1.3 2017-11-09                                               #
+	# contact with Email: xinli_0111@foxmail.com                             #
+	# default filename: sequence.gb                                          #
+	##########################################################################
+\n";
+
+
+$gbFile = $ARGV[0];                                                                             
+if (defined($gbFile)){                                                                             
+	if ($gbFile eq '-d') {                                                                         
+		$gbFile = 'sequence.gb';                                                                   
+	} 
+	print "Processing $gbFile, please wait...\n";                                                                                                
+}else{                                                                                                
+	print "\tPlease input arguemnt of genbank file name!\n\te.g. genbank2featureSeq.pl sequence.gb\n";
+}                                                                                                     
+
+#if (@ARGV==undef) {
+#	print "Please input genbank file!\n";
+#}elsif ($ARGV[0]=="-d") {
+#	$gbFile = "sequence.gb";
+#	print "Processing $gbFile, please wait...\n";
+#}else {
+#	$gbFile = $ARGV[0];
+#	print "Processing $gbFile, please wait...\n";
+#}
 
 
 $/ = "//";
@@ -25,10 +45,11 @@ for $seqInfo (@seqInfo=<GB>){
 	    $speciesName =~ s/\s+/_/g;
 	    $speciesName =~ s/^_([A-Z][a-z])/$1/g;
 	    $taxon =~ s/\n/>/g;
-            $taxon =~ s/\s+/_/g;
+        $taxon =~ s/\s+/_/g;
 	    $taxon =~ s/\>\>/;/g;
 	    $taxon =~ s/;(_|>)/>/g;
 	    $taxon =~ s/_([A-Z][a-z])/$1/g;
 	    
 	    print TI "$accession\t$speciesName\t$taxon\n";
 }
+print "Completed!";
