@@ -4,18 +4,20 @@ use warnings;
 use Bio::Perl;
 use Bio::SeqIO;
 
+print "
 	##########################################################################
-	# version 0.1.2 2017-08-21                                               #
-	# contact with Email: xinli_0111@foxmail.com                             #
+	# version 0.1.3 2017-11-09                                               #
+	# contact with Email: xinli_0111\@foxmail.com                             #
 	# default filename: sequence.gb                                          #
 	##########################################################################
+\n";
 
 my $inputFile = $ARGV[0];
 if (defined($inputFile)){
 	if ($inputFile eq '-d') {
 		$inputFile = 'sequence.gb';
 	}
-  print "Processing, Please wait...\n";
+	print "Processing $inputFile, please wait...\n"; 
 }else{ 
 	print "\tPlease input arguemnt of genbank file name!\n\te.g. genbank2featureSeq.pl sequence.gb\n";
 }
@@ -23,6 +25,7 @@ if (defined($inputFile)){
 	
 my $outputFile = "ExtractedSequencesInformation.txt";
 
+#print "Processing, Please wait...\n";
 
 my $in_obj = Bio::SeqIO->new(-file=>$inputFile,-format=>'genbank');
 open OUT, '>', $outputFile;
