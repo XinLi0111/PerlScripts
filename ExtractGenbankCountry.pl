@@ -4,10 +4,28 @@ use warnings;
 use Bio::Perl;
 use Bio::SeqIO;
 
+print "
+        ##########################################################################
+	# version 0.1.3 2017-11-09                                               #
+	# contact with Email: xinli_0111\@foxmail.com                             #
+	# default filename: sequence.gb                                          #
+	##########################################################################
+\n";
 
-open OUT, '>', 'TachDataDeal_CountryOut20170820.txt';
+
+my $inputFile = $ARGV[0];
+if (defined($inputFile)){
+	if ($inputFile eq '-d') {
+		$inputFile = 'sequence.gb';
+	}
+	print "Processing $inputFile, please wait...\n";       
+}else{ 
+	print "\tPlease input arguemnt of genbank file name!\n\te.g. genbank2featureSeq.pl sequence.gb\n";
+}
+
+open OUT, '>', 'ExtractCountryInformation.txt';
 print OUT "Accession\tCountry\n";
-my $seqio = Bio::SeqIO->new(-file =>'TachDataDeal20170827.gb', -format=>'genbank');
+my $seqio = Bio::SeqIO->new(-file =>$inputFile, -format=>'genbank');
 while (my $seq = $seqio->next_seq()){
 
 my @feat = $seq->get_SeqFeatures;
@@ -22,3 +40,4 @@ for my $feat (@feat){
 	}
 }
 }
+print "Completed!";
